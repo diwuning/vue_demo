@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import scroll from 'vue-seamless-scroll'
+
+Vue.use(scroll)
 
 Vue.config.productionTip = false
 

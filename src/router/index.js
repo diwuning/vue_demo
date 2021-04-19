@@ -4,13 +4,14 @@ import Nine from "../components/nine/Nine";
 import HelloWorld from "../components/HelloWorld";
 import CProgress from "../components/progress/CProgress";
 import luckywheel from "../components/luckywheel/luckywheel";
+import NineEnergy from "../components/energy/NineEnergy";
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/Nine',
       name: 'Nine',
       component: Nine
     },
@@ -28,6 +29,11 @@ export default new Router({
       path: '/home',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/',
+      name: 'NineEnergy',
+      component: NineEnergy
     }
   ]
 })

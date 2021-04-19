@@ -1,9 +1,16 @@
 <template>
   <div id="page">
-    <div class="pond-head" v-on:click="init">
+    <div class="pond-head" v-on:click="init"  style="display:none">
       <img src="../../assets/pond-head.png" alt="">
     </div>
-    <CProgress></CProgress>
+    <CProgress style="display:none"></CProgress>
+    <div style="height: 75px;display: flex;align-items: center; width: 100%">
+      <span style="flex: 1000; font-size: 18px">福利抽奖</span>
+      <div style="float: right;margin-right: 20px; ">
+        <button style="width: 80px; border: 1px solid #ff5c5c; color: #ff5c5c; padding: 6px">抽奖说明</button><br/>
+        <button style="width: 80px; margin-top: 8px; border: 1px solid #ff5c5c; color: #ff5c5c;padding: 6px">我的奖品</button>
+      </div>
+    </div>
     <div class="container-out">
       <div class="container-in">
         <!--   九宫格的每一格     -->
@@ -45,8 +52,24 @@
       </div>
     </div>
     <div class="men" v-show="men"></div>
-    <button style="padding: 10px 30px 10px 30px; border: 1px solid #ff5c5c; color: #ff5c5c; font-size: 15px; margin-top: 20px" v-on:click="jumpWheel()">转盘抽奖</button>
-    <button style="padding: 10px 30px 10px 30px; border: 1px solid #ff5c5c; color: #ff5c5c; font-size: 15px; margin-top: 20px; margin-left: 10px" v-on:click="jumpEnergy()">能量抽奖</button>
+    <div style="margin: 20px;">
+      <button style="padding: 10px 30px 10px 30px; border: 1px solid #ff5c5c; color: #ff5c5c; font-size: 15px; float: left; margin-right: 10px">获奖名单</button>
+      <vue-seamless-scroll
+              :data="list"
+              :class-option="classOption"
+              class="scroll-content">
+        <ul>
+          <li v-for="(item,index) in list"
+              :key="index" style="height: 50px; display: flex;">
+            <div  style="position: relative; align-self: center;">
+              <span class="header_login" slot="right" v-show="item.type != 2">恭喜**获得</span>
+              {{item.name}}
+            </div>
+          </li>
+        </ul>
+      </vue-seamless-scroll>
+    </div>
+
   </div>
 </template>
 <script>
@@ -80,7 +103,13 @@ export default {
       lottert: 0, // 中奖下标
       prize: 0, // 是否中奖
       prize_name: '', // 奖品名字
-      men: false
+      men: false,
+      classOption:{
+        singleHeight: 50,
+        waitTime: 1000,
+        step: 0.5,
+        hoverStop: false
+      }
     }
   },
   created () {
@@ -228,9 +257,6 @@ export default {
     },
     jumpWheel () {
       this.$router.push('/lucky')
-    },
-    jumpEnergy () {
-      this.$router.push('/energy')
     }
   }
 }
@@ -386,5 +412,9 @@ export default {
     z-index: 1;
     left: 0;
     top: 0;
+  }
+  .scroll-content {
+    height: 50px;
+    overflow: hidden;
   }
 </style>
