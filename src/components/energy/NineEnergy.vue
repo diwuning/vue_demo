@@ -25,6 +25,10 @@
         <img src="../../assets/pond-cj.png" :style="{'top':btntop+'px'}"
              style="position:absolute;left:5px;height:68px;width:89px;top:0;" alt="">
       </div>
+<!--      <div class="start-btn" v-on:click="startBtn">-->
+<!--        <div style="position: relative; background-color: #c62015; border-radius: 8px; height: 70%; display: flex; justify-content: center; align-items: center; color: #ffffff">立即抽奖</div>-->
+<!--        <div style="position: relative; height: 30%; display: flex; justify-content: center; align-items: center;color:#000000; font-weight: normal; font-size: 12px">消耗0能量</div>-->
+<!--      </div>-->
       <!--   九宫格周围类似灯的圆点     -->
       <div class="circle" v-for="(item,index) in circleList" :key="index"
            :style="{'top':item.topCircle+'px','left':item.leftCircle+'px','background-color':index%2==0?colorCircleFirst:colorCircleSecond}">
@@ -346,7 +350,9 @@ export default {
     color: #f6251e;
     text-align: center;
     font-weight: bolder;
-    line-height: 77px;
+    /*line-height: 77px;*/
+    /*background-image: url("../../assets/pond-button.png");*/
+    background-color: #FFCEC0;
   }
   .prize{
     background: rgba(0,0,0,0.25);
