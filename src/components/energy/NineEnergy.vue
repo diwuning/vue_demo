@@ -87,14 +87,14 @@ export default {
   data () {
     return {
       list: [
-        { id: 1, type: 1, name: '十元代金卷', image_url: product },
-        { id: 2, type: 2, name: '谢谢参与', image_url: product },
-        { id: 3, type: 1, name: '笔记本电脑', image_url: product },
-        { id: 4, type: 1, name: '20元优惠券', image_url: product },
-        { id: 5, type: 1, name: '500积分', image_url: product },
-        { id: 6, type: 1, name: '100元现金', image_url: product },
-        { id: 7, type: 1, name: '健身卡一张', image_url: product },
-        { id: 8, type: 2, name: '谢谢参与', image_url: product }
+        { id: 1, type: 1, name: '20个能量', image_url: product,count:8 },
+        { id: 2, type: 2, name: '谢谢参与', image_url: product,count:7},
+        { id: 3, type: 3, name: '泡沫洗手机', image_url: product,count:1 },
+        { id: 4, type: 1, name: '50个能量', image_url: product,count:6 },
+        { id: 5, type: 3, name: '毛巾礼盒', image_url: product,count:2 },
+        { id: 6, type: 1, name: '80个能量', image_url: product,count:5 },
+        { id: 7, type: 3, name: '感应小夜灯', image_url: product,count:3 },
+        { id: 8, type: 1, name: '100个能量', image_url: product,count:4 }
       ],
       circleList: [],
       colorCircleFirst: '#F12416',
@@ -237,10 +237,52 @@ export default {
       }, 200 + s)
 
       setTimeout(function () {
-        ts.lottert = ts.randomNum(1, 8)
+        // ts.lottert = ts.randomNum(1, 8)
+        ts.lottert = ts.chance()
         // ts.lottert = 4
       // }, 2e3)
       }, 10000)
+    },
+    //抽奖，设置中奖概率
+    chance: function() {
+      let resultNum = 0
+      let res = 0
+      // var rand = Math.random()*50
+      var rand = Math.random()*100
+      console.log('chance',rand)
+      let prizeArr = [0.000167,0.000167,0.000333,1.332667,1.666667,7,40,50]
+      console.log('chance',prizeArr)
+      if (rand < prizeArr[0]) {
+        resultNum = 1
+      } else if (rand < prizeArr[1]) {
+        resultNum = 2
+      } else if (rand < prizeArr[2]) {
+        resultNum = 3
+      } else if (rand < prizeArr[3]) {
+        resultNum = 4
+      } else if (rand < prizeArr[4]) {
+        resultNum = 5
+      } else if (rand < prizeArr[5]) {
+        resultNum = 6
+        //随机数*50时，
+        // } else if (rand < prizeArr[6]) {
+        //   resultNum = 7
+        // } else if (rand < prizeArr[7]) {
+        //   resultNum = 8
+        //随机数*100时
+      } else if (rand < prizeArr[7]) {
+        resultNum = 8
+      } else {
+        resultNum = 7
+      }
+      console.log('chance',resultNum)
+      for (let i = 0; i < this.list.length; i++) {
+        if (resultNum == this.list[i].count) {
+          res = i+1
+        }
+      }
+      console.log('chance res',res)
+      return res
     },
     randomNum: function (minNum, maxNum) {
       switch (arguments.length) {
