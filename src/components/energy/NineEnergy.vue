@@ -1,13 +1,14 @@
 <template>
-  <div id="page">
+  <div id="page-nine">
     <div class="pond-head" v-on:click="init"  style="display:none">
       <img src="../../assets/pond-head.png" alt="">
     </div>
     <CProgress style="display:none"></CProgress>
     <div style="height: 75px;display: flex;align-items: center; width: 100%">
       <span style="flex: 1000; font-size: 18px">福利抽奖</span>
+      <button id="downloadButton">安装</button>
       <div style="float: right;margin-right: 20px; ">
-        <button style="width: 80px; border: 1px solid #ff5c5c; color: #ff5c5c; padding: 6px">抽奖说明</button><br/>
+        <button style="width: 80px; border: 1px solid #ff5c5c; color: #ff5c5c; padding: 6px; font-size: 3.2vw">抽奖说明</button><br/>
         <button style="width: 80px; margin-top: 8px; border: 1px solid #ff5c5c; color: #ff5c5c;padding: 6px">我的奖品</button>
       </div>
     </div>
@@ -76,9 +77,11 @@
 
   </div>
 </template>
+<script type="text/javascript" charset="UTF-8" src="https://web.cdn.openinstall.io/openinstall.js"></script>
 <script>
 import product from '../../assets/djj.jpg'
 import CProgress from "../progress/CProgress";
+// import OpenInstall from './../../util/openinstall'
 export default {
   name: 'Nine',
   components: {
@@ -119,7 +122,33 @@ export default {
   created () {
     this.init()
   },
+  mounted() {
+    this.initJump()
+  },
   methods: {
+    initJump() {
+      var data = OpenInstall.parseUrlParams();///openinstall.js中提供的工具函数，解析url中的所有查询参数
+      new OpenInstall({
+        /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+        appKey : "vghhgm",
+        /*自定义遮罩的html*/
+        //mask:function(){
+        //  return "<div id='_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+        //},
+        /*OpenInstall初始化完成的回调函数，可选*/
+        onready : function() {
+          /*在app已安装的情况尝试拉起app*/
+          this.schemeWakeup();
+          console.log('openInstall','11111111111111111111')
+          /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+          var m = this, button = document.getElementById("downloadButton");
+          button.onclick = function() {
+            m.wakeupOrInstall();
+            return true;
+          }
+        }
+      }, data);
+    },
     init: function () {
       var ts = this
       var list = this.list
@@ -316,8 +345,11 @@ export default {
   html{
     background: #f12416;
   }
-  #page{
+  #page-nine{
     width: 100%;
+    /*background-image: url("./../../assets/bg2.png");*/
+    background-size: 100% 100%;
+    height: 100%;
   }
 
   .pond-head img{
