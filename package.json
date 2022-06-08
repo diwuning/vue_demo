@@ -13,8 +13,11 @@
     "core-js": "^3.6.5",
     "nprogress": "^0.2.0",
     "vue": "^2.6.11",
+    "vue-color": "^2.8.1",
+    "vue-coverflow": "^2.2.0",
     "vue-router": "^3.4.9",
-    "vue-seamless-scroll": "^1.1.23"
+    "vue-seamless-scroll": "^1.1.23",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
