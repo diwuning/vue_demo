@@ -17,12 +17,14 @@
             mutations
             <div>修改后的名字：{{newName}}</div>
             <div>修改otherParams的值：{{otherParams}}</div>
-            <div>新增的参数：{{$store.state.weight}}</div>
+            <div v-color="msgColor">新增的参数：{{$store.state.weight}}</div>
         </div>
         <div>
             actions
             <div>
                 <button @click="actionAddCount">增加</button>
+                <input v-model="inputValue" placeholder="多行文本输入……" v-focus/>
+<!--                <textarea v-model="message2" placeholder="多行文本输入……" v-focus></textarea>-->
             </div>
         </div>
     </div>
@@ -32,6 +34,12 @@
     import {mapState, mapGetters,mapMutations,mapActions} from 'vuex'
     export default {
         name: "VuexOperate",
+        data() {
+            return {
+                msgColor:'red',
+                inputValue:''
+            }
+        },
         computed: {
             ...mapState({
                 // mapState默认会把state当第一个参数传进来
@@ -83,26 +91,19 @@
 
             }
         },
-        axiosTest() {
-            axios.all([
-                axios({
-                    url: 'https://store.crmeb.net/api/pc/get_products',
-                    params: {
-                        page: 1,
-                        limit: 20,
-                        cid: 57,
-                        sid: 0,
-                        priceOrder: '',
-                        news: 0,
-                    }
-                }),
-                axios({
-                    url: 'https://store.crmeb.net/api/pc/get_company_info',
-                })
-            ]).then(results => {
-                console.log(results)
-            })
-}
+        directives: {
+            color: {
+                inserted: function (el,binding) {
+                    console.log('v-color',binding)
+                    el.style.color = binding.value
+                }
+            },
+            // focus: {
+            //     inserted:function (el) {
+            //         el.focus()
+            //     }
+            // }
+        }
     }
 </script>
 

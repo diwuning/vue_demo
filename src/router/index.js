@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Nine from "../components/nine/Nine";
+import VantDemo from "../components/vant/VantDemo";
 import HelloWorld from "../components/HelloWorld";
 import CProgress from "../components/progress/CProgress";
 import luckywheel from "../components/luckywheel/luckywheel";
@@ -35,6 +36,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/vant',
+      name: 'VantDemo',
+      component: VantDemo
     },
     {
       path: '/css',

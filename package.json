@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "nprogress": "^0.2.0",
+    "vant": "^2.12.47",
     "vue": "^2.6.11",
     "vue-color": "^2.8.1",
     "vue-coverflow": "^2.2.0",

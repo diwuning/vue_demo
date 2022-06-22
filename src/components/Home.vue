@@ -7,8 +7,14 @@
         </ul>
         <div @click="jumpDemo">测试</div>
         <div>{{result}}</div>
+        <!--     两栏布局 方法一，左边固宽浮动，右边BFC  -->
         <div class="left"></div>
         <div class="right"></div>
+        <!--     两栏布局 方法二, 父flex，右边固宽浮动，左边flex:1 -->
+        <div style="display: flex; background-color: #ffb000">
+            <div style="background-color: green;flex:1">左边栏</div>
+            <div style="background-color: #00000000; width: 200px; float: right">右边栏</div>
+        </div>
         <div style="height:1px;width:100%; background-color:black"></div>
         <div id="box1">
             <div id="box3"></div>
@@ -19,6 +25,10 @@
         <div class="div1">
             <div class="son1">a</div>
             <div class="son2">b</div>
+        </div>
+        <!--  postion为默认时，top,left不起作用      -->
+        <div style="background-color: #42b983; top:50px;left: 30px;">
+            <img src="../assets/product.png" style="background-color: blue">
         </div>
 
     </div>
@@ -120,7 +130,9 @@
      background: lightcoral;
      margin-top:100px ;
      opacity: 0.3;
+     /*兄弟间外边距重叠，除了加float外，还可以给其中一个兄弟加div,在div上设置边框*/
      /*float: left;*/
+
  }
     #box3 {
         width: 100px;
