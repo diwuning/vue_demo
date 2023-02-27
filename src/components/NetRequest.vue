@@ -1,21 +1,37 @@
 <template>
     <div>
-        总能量值为{{totalScore}}
+        <NavBar title="网络请求" :back="true"></NavBar>
+        <div class="title_style">
+            总能量值为{{totalScore}}
+        </div>
+
+        <div>
+            任务列表
+            <div v-for="(item,index) in tasks" :key="index">
+                任务名称：{{item.title}}
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import NavBar from "./navBar/NavBar";
     export default {
         name: "NetRequest",
+        components:{
+            NavBar
+        },
         data() {
             return {
-                totalScore:0
+                totalScore:0,
+                tasks:null
             }
         },
         created() {
             this.getTotal()
-            this.getGoodList()
+            // this.getGoodList()
             // this.getGoodsList2()
+            this.getTasks()
         },
         methods: {
             getGoodList() {
@@ -92,11 +108,32 @@
                 }).catch(function (error) {
                     console.log('getTotal error',error)
                 })
+            },
+            async getTasks() {
+                let that = this
+                this.$axios({
+                    url:'/js/tasks.json',
+                    method:'GET'
+                }).then(function (res) {
+                    console.log('getTasks',res)
+                    that.tasks = res.data
+                    console.log('getTasks',this.tasks)
+                }).catch(err=>{
+                    console.log('getTasks',err)
+                });
+                // this.$axios.get('/js/tasks.json').then(function (res) {
+                //     console.log('getTasks',res)
+                // }).catch(err=>{
+                //     console.log('getTasks',err)
+                // });
             }
         }
     }
 </script>
 
 <style scoped>
-
+.title_style {
+    margin-top: 24px;
+    margin-bottom: 15px;
+}
 </style>

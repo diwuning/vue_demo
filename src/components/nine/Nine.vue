@@ -230,7 +230,7 @@ export default {
       this.$router.push('/lucky')
     },
     jumpEnergy () {
-      this.$router.push('/energy')
+      this.$router.push('/ninelottery')
     }
   }
 }

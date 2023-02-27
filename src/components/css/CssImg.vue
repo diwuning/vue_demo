@@ -2,6 +2,9 @@
     <div>
         <img src="./../../assets/logo.png" style="width: 20px; height: 20px; float: left; transform: rotate(90deg)" @click="backReturn">
         <h3>CSS故障艺术</h3>
+        <div class="content-item">
+                            <img src="../../assets/pond-head.png" style="width: 120px; height: 120px;">
+        </div>
         <div>
             <span>1.图片的 Glitch Art 风</span>
             <div class="mix"></div>
@@ -41,6 +44,34 @@
 </script>
 
 <style scoped>
+    .content-item div {
+        width: 260px;
+        height: 260px;
+        border-radius: 10px;
+        background-size: contain;
+        position: relative;
+        margin: 112px 0px;
+        background-image: url("../../assets/pond-head.png");
+    }
+
+    .content-item div::after {
+        content: "";
+        background: inherit;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        filter: blur(20px) brightness(80%);
+        transition: all 300ms;
+        z-index: -1;
+    }
+
+    .content-item div:hover::after {
+        width: 280px;
+        height: 280px;
+    }
 .mix {
     width: 200px;
     height: 200px;

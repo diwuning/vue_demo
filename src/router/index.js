@@ -21,6 +21,9 @@ import CanvasCircle from "../components/colorPicker/CanvasCircle";
 import colorDemo from "../components/colorPicker/colorDemo";
 import jsOperate from "../components/jsfunction/jsOperate";
 import VuexOperate from "../components/vuex/VuexOperate";
+import lottery from "../components/menu/lottery";
+import NineLottery from "../components/nineLottery/NineLottery";
+import cssFloat from "../components/css/cssFloat";
 
 Vue.use(Router)
 
@@ -46,6 +49,11 @@ export default new Router({
       path: '/css',
       name: 'CssImg',
       component: CssImg
+    },
+    {
+      path: '/cssFloat',
+      name: 'CssFloat',
+      component: cssFloat
     },
     {
       path: '/progress',
@@ -123,9 +131,19 @@ export default new Router({
       component: jsOperate
     },
     {
-          path: '/vuexOperate',
-          name: 'VuexOperate',
-          component: VuexOperate
-        }
+      path: '/vuexOperate',
+      name: 'VuexOperate',
+      component: VuexOperate
+    },
+    {
+      path: '/lottery',
+      name: 'lottery',
+      component: lottery
+    },
+    {
+      path: '/ninelottery',
+      name: 'NineLottery',
+      component: NineLottery
+    }
   ]
 })

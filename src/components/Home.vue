@@ -1,51 +1,41 @@
 <template>
     <div>
-        <ul>
-            <li v-for="(item,index) in menuList" :key="index">
-                <button style="border: 1px solid #f12416; padding: 10px" @click="jumpOther(index)">{{item.name}}</button>
-            </li>
-        </ul>
+<!--        <ul>-->
+<!--            <li v-for="(item,index) in menuList" :key="index" style="background-color: #42b983">-->
+<!--                <button style="border: 1px solid #f12416; padding: 0px" @click="jumpOther(index)">{{item.name}}</button>-->
+<!--            </li>-->
+<!--        </ul>-->
+        <NavBar title="Vue示例" :back="false">
+            <template v-slot:right>
+                <img src="../assets/icon_share.png" align="right" height="20" width="20">
+            </template>
+        </NavBar>
+        <div v-for="(item,index) in menuList" :key="index" class="menu_item">
+            <button style="border: 1px solid #f12416" @click="jumpOther(index)">{{item.name}}</button>
+        </div>
         <div @click="jumpDemo">测试</div>
         <div>{{result}}</div>
-        <!--     两栏布局 方法一，左边固宽浮动，右边BFC  -->
-        <div class="left"></div>
-        <div class="right"></div>
-        <!--     两栏布局 方法二, 父flex，右边固宽浮动，左边flex:1 -->
-        <div style="display: flex; background-color: #ffb000">
-            <div style="background-color: green;flex:1">左边栏</div>
-            <div style="background-color: #00000000; width: 200px; float: right">右边栏</div>
-        </div>
-        <div style="height:1px;width:100%; background-color:black"></div>
-        <div id="box1">
-            <div id="box3"></div>
-        </div>
-        <div id="box4"></div>
-        <div id="box2"></div>
 
-        <div class="div1">
-            <div class="son1">a</div>
-            <div class="son2">b</div>
-        </div>
-        <!--  postion为默认时，top,left不起作用      -->
-        <div style="background-color: #42b983; top:50px;left: 30px;">
-            <img src="../assets/product.png" style="background-color: blue">
-        </div>
 
     </div>
 </template>
 
 <script>
+    import NavBar from "./navBar/NavBar";
     export default {
         name: "Home",
+        components:{
+            NavBar
+        },
         data() {
             return {
                 menuList: [
-                    {name:'不规则图形',path:'/css'},
-                    {name:'vant组件', path: '/vant'},
-                    {name:'Element UI', path: '/element'},
-                    {name:'九宫格抽奖', path: '/NineEnergy'},
+                    // {name:'vant组件', path: '/vant'},
+                    {name:'九宫格抽奖', path: '/ninelottery'},
                     {name:'转盘抽奖', path: '/lucky'},
                     {name:'九宫格抽奖2', path: '/Nine'},
+                    {name:'不规则图形',path:'/css'},
+                    {name:'css样式',path:'/cssFloat'},
                     {name:'表单', path: '/login'},
                     {name:'照片墙', path: '/galley'},
                     {name:'网络请求', path: '/request'},
@@ -98,71 +88,8 @@
      display: inline;
      margin-left: 15px;
  }
- .left {
-     width: 200px;
-     height: 100px;
-     background-color: green;
-     float: left;
+ .menu_item {
+     display: inline-block;
  }
 
- .right {
-     height: 100px;
-     background-color: red;
-     overflow: hidden; /* 创建BFC */
- }
-
- #box1{
-     width: 200px;
-     height: 200px;
-     background: lemonchiffon;
-     margin-bottom: 50px;
-     margin-top: 50px;
-     /*overflow:hidden;*/
-     /*border: 1px solid #00000000;*/
-     /*display: inline-block;*/
-     /*float:left;*/
-     /*position: absolute*/
-     /*padding: 10px;*/
- }
- #box2{
-     width: 200px;
-     height: 200px;
-     background: lightcoral;
-     margin-top:100px ;
-     opacity: 0.3;
-     /*兄弟间外边距重叠，除了加float外，还可以给其中一个兄弟加div,在div上设置边框*/
-     /*float: left;*/
-
- }
-    #box3 {
-        width: 100px;
-        height: 100px;
-        background-color: #f12416;
-        margin-top: 50px;
-        /*display: inline-block;*/
-        /*float:left;*/
-        /*position: absolute*/
-    }
-    #box4 {
-        margin-top: 50px;
-        margin-bottom:50px ;
-        background-color: #42b983;
-        /*border: 1px solid salmon;*/
-        /*padding: 1px;*/
-    }
- .div1 {
-     width: 150px;
-     border: 1px solid red;
-     /*使用BFC来清除浮动*/
-     overflow: hidden;
- }
- .son1, .son2 {
-     width: 100px;
-     height: 100px;
-     background-color: blue;
-     float: left;
- }
- .son2 {
-     background-color: greenyellow;
- }
 </style>
