@@ -34,7 +34,7 @@
                     {name:'九宫格抽奖', path: '/ninelottery'},
                     {name:'转盘抽奖', path: '/lucky'},
                     {name:'九宫格抽奖2', path: '/Nine'},
-                    {name:'不规则图形',path:'/css'},
+                    {name:'css不规则图形',path:'/css'},
                     {name:'css样式',path:'/cssFloat'},
                     {name:'表单', path: '/login'},
                     {name:'照片墙', path: '/galley'},
