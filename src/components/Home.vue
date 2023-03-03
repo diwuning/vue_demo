@@ -44,7 +44,7 @@
                     {name:'取色器CanvasColor1', path: '/canvasColor1'},
                     {name:'取色器CanvasColor2', path: '/canvasColor2'},
                     {name:'colorSetting', path: '/yxfColor'},
-                    {name:'CanvasCircle', path: '/canvasCircle'},
+                    {name:'取色器例子', path: '/doubleColor'},
                     {name:'colorDemo', path: '/colorDemo'},
                     {name:'js操作', path: '/jsOperate'},
                     {name:'vuex', path: '/vuexOperate'}

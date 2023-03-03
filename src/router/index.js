@@ -12,13 +12,15 @@ import Login from "../components/Antd/Login";
 import Galley from "../components/page/Galley";
 import NetRequest from "../components/NetRequest";
 import ColorPicker from "../components/colorPicker/ColorPicker";
-import CanvasColor from "../components/colorPicker/CanvasColor";
+// import CanvasColor from "../components/colorPicker/CanvasColor";
+import CanvasColor from "../components/color/CanvasWhite";
 // import CanvasColor1 from "../components/colorPicker/CanvasColor1";
-import CanvasColor2 from "../components/colorPicker/CanvasColor2";
-import yxfColor from "../components/colorPicker/yxfColor";
+// import CanvasColor2 from "../components/colorPicker/CanvasColor2";
+import CanvasColor2 from "../components/color/CanvasColor";
+import yxfColor1 from "../components/colorPicker/yxfColor";
 import CanvasColor3 from "../components/colorPicker/CanvasColor3";
-import CanvasCircle from "../components/colorPicker/CanvasCircle";
 import colorDemo from "../components/colorPicker/colorDemo";
+import yxfColor from "../components/color/yxfColor";
 import jsOperate from "../components/jsfunction/jsOperate";
 import VuexOperate from "../components/vuex/VuexOperate";
 import lottery from "../components/menu/lottery";
@@ -112,13 +114,13 @@ export default new Router({
     },
     {
       path: '/yxfColor',
-      name: 'yxfColor',
-      component: yxfColor
+      name: 'yxfColor1',
+      component: yxfColor1
     },
     {
-      path: '/canvasCircle',
-      name: 'CanvasCircle',
-      component: CanvasCircle
+      path: '/doubleColor',
+      name: 'yxfColor',
+      component: yxfColor
     },
     {
       path: '/colorDemo',
