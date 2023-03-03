@@ -23,24 +23,27 @@ import colorDemo from "../components/colorPicker/colorDemo";
 import yxfColor from "../components/color/yxfColor";
 import jsOperate from "../components/jsfunction/jsOperate";
 import VuexOperate from "../components/vuex/VuexOperate";
-import lottery from "../components/menu/lottery";
 import NineLottery from "../components/nineLottery/NineLottery";
 import cssFloat from "../components/css/cssFloat";
 import ElementUIDemo from "../components/ElementUI/ElementUIDemo";
 import ButtonUI from "../components/ElementUI/ButtonUI";
 import TableUi from "../components/ElementUI/TableUi";
+import AnimateDemo from "../components/ElementUI/AnimateDemo";
+import ElLogin from "../components/ElementUI/ElLogin";
 
 Vue.use(Router)
-// const originalPush = Router.prototype.push
-// Router.prototype.push = function push(location) {
-//   return originalPush.call(this, location).catch(err => err)
-// }
+
+//重复点击相同路由时报错Uncaught (in promise) NavigationDuplicated: Avoided redundant navigation to current location:
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 export default new Router({
   mode:'history',
   routes: [
     {
-      path: '/Nine',
+      path: '/Nine',//九宫格抽奖（旧）+进度条
       name: 'Nine',
       component: Nine
     },
@@ -65,12 +68,12 @@ export default new Router({
       component: cssFloat
     },
     {
-      path: '/progress',
+      path: '/progress', //进度条
       name: 'CProgress',
       component: CProgress
     },
     {
-      path: '/lucky',
+      path: '/lucky',//转盘抽奖
       name: 'luckywheel',
       component: luckywheel
     },
@@ -80,7 +83,7 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/login',
+      path: '/login',//表单
       name: 'Login',
       component: Login
     },
@@ -90,7 +93,7 @@ export default new Router({
       component: Galley
     },
     {
-      path: '/NineEnergy',
+      path: '/NineEnergy',//九宫格抽奖（旧）
       name: 'NineEnergy',
       component: NineEnergy
     },
@@ -125,7 +128,7 @@ export default new Router({
       component: yxfColor1
     },
     {
-      path: '/doubleColor',
+      path: '/doubleColor',//取色器例子
       name: 'yxfColor',
       component: yxfColor
     },
@@ -145,12 +148,7 @@ export default new Router({
       component: VuexOperate
     },
     {
-      path: '/lottery',
-      name: 'lottery',
-      component: lottery
-    },
-    {
-      path: '/ninelottery',
+      path: '/ninelottery',//九宫格抽奖（新）
       name: 'NineLottery',
       component: NineLottery
     },
@@ -166,6 +164,14 @@ export default new Router({
         {
           path: 'elTable',
           component: TableUi
+        },
+        {
+          path: 'elAnimate',
+          component: AnimateDemo
+        },
+        {
+          path: 'elLogin',
+          component: ElLogin
         }
       ]
     }

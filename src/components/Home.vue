@@ -36,7 +36,7 @@
                     {name:'九宫格抽奖2', path: '/Nine'},
                     {name:'css不规则图形',path:'/css'},
                     {name:'css样式',path:'/cssFloat'},
-                    {name:'表单', path: '/login'},
+                    {name:'AntD表单', path: '/login'},
                     {name:'照片墙', path: '/galley'},
                     {name:'网络请求', path: '/request'},
                     {name:'取色器ColorPicker', path: '/colorPicker'},

@@ -19,8 +19,8 @@
                     {name:'按钮', path: '/elementUi/elButton' },
                     {name:'分页表格', path: '/elementUi/elTable'},
                     {name:'家庭', path: '/family'},
-                    {name:'动画', path: '/animate'},
-                    {name:'表单', path: '/login'},
+                    {name:'动画', path: '/elementUi/elAnimate'},
+                    {name:'el表单', path: '/elementUi/elLogin'},
                     {name:'列表', path: '/list'}
                 ]
             }
