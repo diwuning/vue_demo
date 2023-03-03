@@ -47,7 +47,8 @@
                     {name:'取色器例子', path: '/doubleColor'},
                     {name:'colorDemo', path: '/colorDemo'},
                     {name:'js操作', path: '/jsOperate'},
-                    {name:'vuex', path: '/vuexOperate'}
+                    {name:'vuex', path: '/vuexOperate'},
+                    {name:'elementUi',path:'elementUi'}
                 ],
                 result:''
             }

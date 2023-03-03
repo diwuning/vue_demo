@@ -26,8 +26,15 @@ import VuexOperate from "../components/vuex/VuexOperate";
 import lottery from "../components/menu/lottery";
 import NineLottery from "../components/nineLottery/NineLottery";
 import cssFloat from "../components/css/cssFloat";
+import ElementUIDemo from "../components/ElementUI/ElementUIDemo";
+import ButtonUI from "../components/ElementUI/ButtonUI";
+import TableUi from "../components/ElementUI/TableUi";
 
 Vue.use(Router)
+// const originalPush = Router.prototype.push
+// Router.prototype.push = function push(location) {
+//   return originalPush.call(this, location).catch(err => err)
+// }
 
 export default new Router({
   mode:'history',
@@ -146,6 +153,21 @@ export default new Router({
       path: '/ninelottery',
       name: 'NineLottery',
       component: NineLottery
+    },
+    {
+      path: '/elementUi',
+      name: 'ElementUIDemo',
+      component: ElementUIDemo,
+      children:[
+        {
+          path:'elButton',
+          component: ButtonUI
+        },
+        {
+          path: 'elTable',
+          component: TableUi
+        }
+      ]
     }
   ]
 })

@@ -37,6 +37,20 @@ import 'vant/lib/index.css';
 
 Vue.use(vant);
 
+//============== element-ui 设置 start================
+//element-ui的完整引入
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+// 引入element时,可以引入全局配置对象，该对象目前支持 size 与 zIndex 字段。
+// size 用于改变组件的默认尺寸，zIndex 设置弹框的初始 z-index（默认值：2000）
+// Vue.use(ElementUI, {size:'small', zIndex:3000});
+
+// 国际化，element组件内部默认使用中文，若希望使用其他语言，则要进行多语言设置
+/*import locale from 'element-ui/lib/locale/lang/en';
+Vue.use(ElementUI, {locale});*/
+//============== element-ui 设置 end================
+
 Vue.directive('focus',{
   inserted:function (el) {
     el.focus()
