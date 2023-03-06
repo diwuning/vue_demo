@@ -158,19 +158,19 @@ export default new Router({
       component: ElementUIDemo,
       children:[
         {
-          path:'elButton',
+          path:'/elButton',//使用element的el-menu功能需要加/，否则跳转错误
           component: ButtonUI
         },
         {
-          path: 'elTable',
+          path: '/elTable',
           component: TableUi
         },
         {
-          path: 'elAnimate',
+          path: '/elAnimate',
           component: AnimateDemo
         },
         {
-          path: 'elLogin',
+          path: '/elLogin',
           component: ElLogin
         }
       ]
