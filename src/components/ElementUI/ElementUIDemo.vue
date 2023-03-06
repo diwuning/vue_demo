@@ -2,7 +2,7 @@
     <div style="height: 100%; position: fixed; width: 100%">
         <img src="../../assets/logo.png" style="transform: rotate(90deg);position:absolute; display: flex" width="20px" height="20px" @click="goBack()"/>
         <el-container>
-            <el-header style="font-size: 40px">
+            <el-header style="font-size: 40px; height: 120px">
                 ElementUI 示例
                 <!-- 点击此图片，可实现侧边栏菜单的折叠和关闭 -->
                 <img src="../../assets/back.png" width="20px" height="20px" @click="changeOpen()"/>
@@ -47,6 +47,7 @@
                             <el-menu-item index="elButton">按钮</el-menu-item>
                             <el-menu-item index="elTable">表格</el-menu-item>
                             <el-menu-item index="elLogin">登陆</el-menu-item>
+                            <el-menu-item index="horizontal">横向</el-menu-item>
                         </el-submenu>
                         <el-submenu index="3">
                             <template slot="title">

@@ -30,6 +30,7 @@ import ButtonUI from "../components/ElementUI/ButtonUI";
 import TableUi from "../components/ElementUI/TableUi";
 import AnimateDemo from "../components/ElementUI/AnimateDemo";
 import ElLogin from "../components/ElementUI/ElLogin";
+import HMenuDemo from "../components/ElementUI/HMenuDemo";
 
 Vue.use(Router)
 
@@ -172,6 +173,10 @@ export default new Router({
         {
           path: '/elLogin',
           component: ElLogin
+        },
+        {
+          path: '/horizontal',
+          component: HMenuDemo
         }
       ]
     }
