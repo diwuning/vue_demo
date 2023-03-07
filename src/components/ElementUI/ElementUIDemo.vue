@@ -1,3 +1,5 @@
+<!--此时点击menu中的某一项会跳转到另一个页面的相关项目下，需要将router/index.js中的elementUi的设置放到mainLayout之前，才会正确跳转-->
+<!--主要使用的控件有container布局容器，NavMenu水平导航栏和侧边栏，以及页头的使用，还有点击按钮，侧边栏折叠和展开功能-->
 <template>
     <div style="height: 100%; position: fixed; width: 100%">
         <img src="../../assets/logo.png" style="transform: rotate(90deg);position:absolute; display: flex" width="20px" height="20px" @click="goBack()"/>
@@ -5,7 +7,7 @@
             <el-header style="font-size: 40px; height: 120px">
                 ElementUI 示例
                 <!-- 点击此图片，可实现侧边栏菜单的折叠和关闭 -->
-                <img src="../../assets/back.png" width="20px" height="20px" @click="changeOpen()"/>
+                <img :src="collapseImg" width="20px" height="20px" @click="changeOpen()"/>
                 <el-menu
                         :default-active="activeIndex2"
                         class="el-menu-demo"
@@ -44,43 +46,35 @@
                                 <i class="el-icon-document"></i>
                                 <span slot="title">示例</span>
                             </template>
-                            <el-menu-item index="elButton">按钮</el-menu-item>
-                            <el-menu-item index="elTable">表格</el-menu-item>
-                            <el-menu-item index="elLogin">登陆</el-menu-item>
-                            <el-menu-item index="horizontal">横向</el-menu-item>
+                            <el-menu-item index="elButton">按钮示例</el-menu-item>
+                            <el-menu-item index="elTable">分页表格</el-menu-item>
+                            <el-menu-item index="elLogin">表单登陆</el-menu-item>
+                            <el-menu-item index="horizontal">水平导航</el-menu-item><!--水平导航栏，多级菜单-->
                         </el-submenu>
                         <el-submenu index="3">
-                            <template slot="title">
-                                <i class="el-icon-location"></i>
-                                <span slot="title">导航</span>
-                            </template>
-                        </el-submenu>
-                        <el-submenu index="4">
                             <template slot="title"><i class="el-icon-plus"></i><span slot="title">动画</span></template>
                             <el-menu-item index="elAnimate">Animate.css</el-menu-item>
                         </el-submenu>
-                        <el-submenu index="5">
+                        <el-submenu index="4">
                             <template slot="title"><i class="el-icon-star-on"></i><span slot="title">图表</span></template>
                             <el-menu-item index="ninelottery">vue-seamless-scroll</el-menu-item>
                             <!-- <el-menu-item index="newMember">用户数据</el-menu-item> -->
                         </el-submenu>
-                        <el-submenu index="6">
+                        <el-submenu index="5">
                             <template slot="title"><i class="el-icon-edit"></i><span slot="title">编辑</span></template>
                             <!-- <el-menu-item index="uploadImg">上传图片</el-menu-item> -->
                             <el-menu-item index="vueEdit">文本编辑</el-menu-item>
                         </el-submenu>
-                        <el-submenu index="7">
+                        <el-submenu index="6">
                             <template slot="title"><i class="el-icon-setting"></i><span slot="title">设置</span></template>
                             <el-menu-item index="adminSet">管理员设置</el-menu-item>
                             <!-- <el-menu-item index="sendMessage">发送通知</el-menu-item> -->
                         </el-submenu>
-                        <el-submenu index="8">
-                            <template slot="title"><i class="el-icon-warning"></i><span slot="title">说明</span></template>
-                            <el-menu-item index="explain">说明</el-menu-item>
-                        </el-submenu>
                     </el-menu>
                 </el-aside>
                 <el-main>
+                    <!--   页头   -->
+                    <el-page-header @back="goBack" content="详情" style="border: 1px solid #333333;padding: 14px 12px"></el-page-header>
                     <keep-alive>
                         <router-view></router-view>
                     </keep-alive>
@@ -91,21 +85,24 @@
 </template>
 
 <script>
+    import collapseImg from '../../assets/back_left.png';
+    import noCollapseImg from '../../assets/back.png';
     export default {
         name: "ElementUIDemo",
         data() {
             return {
                 componentList: [
-                    {name:'按钮', path: '/elementUi/elButton' },
-                    {name:'分页表格', path: '/elementUi/elTable'},
+                    {name:'按钮', path: '/elButton' },
+                    {name:'分页表格', path: '/elTable'},
                     {name:'家庭', path: '/family'},
-                    {name:'动画', path: '/elementUi/elAnimate'},
-                    {name:'el表单', path: '/elementUi/elLogin'},
+                    {name:'动画', path: '/elAnimate'},
+                    {name:'el表单', path: '/elLogin'},
                     {name:'列表', path: '/list'}
                 ],
                 asideWidth:'200px',
                 activeIndex2: '1',
-                isCollapse:false
+                isCollapse:false,
+                collapseImg: noCollapseImg
             }
         },
         computed: {
@@ -122,6 +119,11 @@
             },
             changeOpen() {
                 this.isCollapse = !this.isCollapse;
+                if(this.isCollapse) {
+                    this.collapseImg = collapseImg
+                } else {
+                    this.collapseImg = noCollapseImg
+                }
             }
         }
     }

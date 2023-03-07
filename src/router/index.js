@@ -31,6 +31,7 @@ import TableUi from "../components/ElementUI/TableUi";
 import AnimateDemo from "../components/ElementUI/AnimateDemo";
 import ElLogin from "../components/ElementUI/ElLogin";
 import HMenuDemo from "../components/ElementUI/HMenuDemo";
+import MainLayoutE from "../components/ElementUI/MainLayoutE";
 
 Vue.use(Router)
 
@@ -153,6 +154,39 @@ export default new Router({
       name: 'NineLottery',
       component: NineLottery
     },
+    // 子组件只能在一个页面的嵌套路由中，如果在两个嵌套路由中，则哪个在前，跳转到哪个父页面的相应页面
+    {
+      path:'/mainLayout',
+      name:'MainLayoutE',
+      component:MainLayoutE,
+      children:[
+        {
+          path:'/elButton',//使用element的el-menu功能需要加/，否则跳转错误
+          component: ButtonUI,
+          meta: ['vue后台框架', '按钮示例'],//面包屑功能用到的
+        },
+        {
+          path: '/elTable',
+          component: TableUi,
+          meta: ['vue后台框架', '分页表格'],
+        },
+        {
+          path: '/elAnimate',
+          component: AnimateDemo,
+          meta: ['vue后台框架', '动画'],
+        },
+        {
+          path: '/elLogin',
+          component: ElLogin,
+          meta: ['vue后台框架', '表单登陆'],
+        },
+        {
+          path: '/horizontal',
+          component: HMenuDemo,
+          meta: ['vue后台框架', '水平导航'],
+        }
+      ]
+    },
     {
       path: '/elementUi',
       name: 'ElementUIDemo',
@@ -179,6 +213,6 @@ export default new Router({
           component: HMenuDemo
         }
       ]
-    }
+    },
   ]
 })

@@ -48,7 +48,8 @@
                     {name:'colorDemo', path: '/colorDemo'},
                     {name:'js操作', path: '/jsOperate'},
                     {name:'vuex', path: '/vuexOperate'},
-                    {name:'elementUi',path:'elementUi'}
+                    {name:'elementUi',path:'elementUi'},
+                    {name:'vue后台框架',path:'mainLayout'}
                 ],
                 result:''
             }
