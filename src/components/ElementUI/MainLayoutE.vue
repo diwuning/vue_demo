@@ -1,12 +1,12 @@
 <template>
-    <div style="height: 100%">
+    <div style="height: 100%;">
         <el-row style="height: 100%;">
-            <el-col :span="4" style="background-color: #545c64;height: 100%">
+            <el-col :span="isCollapse?1:4" style="background-color: #545c64;min-height: 100%;">
                 <div style="margin: 20px">
                     <img src="../../assets/chongke/chk_logo.png" width="30px" height="30px">
-                    <span style="color: #ffffff; margin: 12px">充客智慧门店系统</span>
+                    <span style="color: #ffffff; margin: 12px;" :style="isCollapse?'display:none':'visibility:visible'">充客智慧门店系统</span>
                 </div>
-                <el-menu :default-active="defaultActive" style="min-height: 100%;" background-color="#545c64"
+                <el-menu :default-active="defaultActive" style="min-height: 100%;border-color: #00000000;" background-color="#545c64"
                          text-color="#fff" theme="dark" router :collapse="isCollapse">
                     <el-menu-item index="mainLayout" class="el_menu_item_style"><i class="el-icon-menu"></i><span slot="title">首页</span></el-menu-item>
                     <el-submenu index="2" class="el_menu_item_style">
@@ -40,9 +40,12 @@
                     </el-submenu>
                 </el-menu>
             </el-col>
-            <el-col :span="20" style="height: 100%; background-color:#ffffff">
+            <el-col :span="isCollapse?23:20" style="height: 100%; overflow: auto;">
             <!--   面包屑  -->
-                <head-top></head-top>
+                <div style="position: relative;">
+                    <i :class="isCollapse? 'el-icon-s-unfold' : 'el-icon-s-fold'" class="icon_style" @click="changeMenuStatus()"></i>
+                    <head-top style="padding-left: 40px;"></head-top>
+                </div>
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
@@ -60,15 +63,24 @@
             return {
                 isCollapse:false,
             }
+        },
+        methods: {
+            changeMenuStatus() {
+                this.isCollapse = !this.isCollapse;
+            }
         }
     }
 </script>
 
 <style scoped>
-    .el_menu_collapse {
-        width: 200px;
-    }
     .el_menu_item_style {
         text-align: left;
+    }
+    .icon_style {
+        position:absolute;
+        display:flex;
+        top:50%;
+        transform: translate(0%,-50%);
+        margin-left: 12px;
     }
 </style>
