@@ -32,6 +32,8 @@ import AnimateDemo from "../components/ElementUI/AnimateDemo";
 import ElLogin from "../components/ElementUI/ElLogin";
 import HMenuDemo from "../components/ElementUI/HMenuDemo";
 import MainLayoutE from "../components/ElementUI/MainLayoutE";
+import ElCarousel from "../components/ElementUI/ElCarousel";
+import ElForm from "../components/ElementUI/ElForm";
 
 Vue.use(Router)
 
@@ -184,6 +186,16 @@ export default new Router({
           path: '/horizontal',
           component: HMenuDemo,
           meta: ['vue后台框架', '水平导航'],
+        },
+        {
+          path: '/elCarousel',
+          component: ElCarousel,
+          meta: ['vue后台框架','走马灯']
+        },
+        {
+          path: '/elForm',
+          component: ElForm,
+          meta: ['vue后台框架','注册表单']
         }
       ]
     },

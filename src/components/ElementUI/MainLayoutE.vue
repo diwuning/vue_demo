@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%;">
-        <el-row style="height: 100%;">
-            <el-col :span="isCollapse?1:4" style="background-color: #545c64;min-height: 100%;">
+        <el-row style="height: 100%; overflow: hidden;">
+            <el-col :span="isCollapse?1:4" style="background-color: #545c64;height: 100%; overflow:auto">
                 <div style="margin: 20px">
                     <img src="../../assets/chongke/chk_logo.png" width="30px" height="30px">
                     <span style="color: #ffffff; margin: 12px;" :style="isCollapse?'display:none':'visibility:visible'">充客智慧门店系统</span>
@@ -22,6 +22,8 @@
                     <el-submenu index="3" class="el_menu_item_style">
                         <template slot="title"><i class="el-icon-plus"></i><span slot="title">动画</span></template>
                         <el-menu-item index="elAnimate">Animate.css</el-menu-item>
+                        <el-menu-item index="elCarousel">走马灯</el-menu-item>
+                        <el-menu-item index="elForm">注册表单</el-menu-item>
                     </el-submenu>
                     <el-submenu index="4" class="el_menu_item_style">
                         <template slot="title"><i class="el-icon-star-on"></i><span slot="title">图表</span></template>
@@ -62,6 +64,7 @@
         data() {
             return {
                 isCollapse:false,
+                defaultActive:''
             }
         },
         methods: {
