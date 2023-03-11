@@ -44,7 +44,11 @@
                     <el-form-item label="地址" prop="address">
                         <!-- 级联选择器,clearable可清空-->
                         <el-cascader v-model="registerForm.address" :options="addrOptions" clearable
-                                     style="width:300px" @change="cascaderChange"></el-cascader>
+                                     style="width:300px" @change="cascaderChange" @expand-change="expandChange"></el-cascader>
+                    </el-form-item>
+                    <el-form-item label="地址2" prop="address" style="width:380px">
+                        <!-- 省市区选择器-->
+                        <area-dropdown @getAreaValue="getAreaValue"></area-dropdown>
                     </el-form-item>
                     <el-form-item label="头像" prop="headPic">
                         <!-- shape设置形状circle/square,默认circle，size设大小number/large/medium/small-->
@@ -65,8 +69,10 @@
 </template>
 
 <script>
+    import areaDropdown from "./view/areaDropdown";
     export default {
-        name: "Login",
+        name: "elFormDemo",
+        components:{areaDropdown},
         data() {
             // 确认密码的验证
             var validatePass2 = (rule, value, callback) => {
@@ -105,8 +111,8 @@
                 //绑定验证码图片
                 codeImg: null,
                 addrOptions: [
-                    {value: 'bj', label:'北京', children: [{value:'cyq',label:'朝阳区'},{value:'hdq',label:'海淀区'}]}
-                ]
+                    {value: 'bj', label:'北京', children: [{value:'sxq',label:'市辖区',children: [{value:'cyq',label:'朝阳区'},{value:'hdq',label:'海淀区'}]}]}
+                ],
             }
         },
         created() {
@@ -179,9 +185,21 @@
                 this.registerForm.validateTime = selTime;
                 console.log('changeDate',selTime)
             },
+            //级联选择器选中值时触发
             cascaderChange(value) {
                 console.log('cascaderChange',value)
                 this.registerForm.address = value[0]+value[1];
+            },
+            //级联选择器展开下一级菜单时触发
+            expandChange(arr) {
+                console.log('expandChange',arr)
+                if(arr.length == 1) {
+                   // let res = this.getAreaData(arr[0]);
+                }
+            },
+            //获取子组件的值
+            getAreaValue(data) {
+                console.log('getAreaValue',data)
             },
             errorAvatar() {
                 return true
