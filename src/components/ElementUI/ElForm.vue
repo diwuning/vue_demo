@@ -48,7 +48,7 @@
                     </el-form-item>
                     <el-form-item label="地址2" prop="address" style="width:380px">
                         <!-- 省市区选择器-->
-                        <area-dropdown @getAreaValue="getAreaValue"></area-dropdown>
+                        <area-dropdown @getAreaValue="getAreaValue" :updateArea="registerForm.addressCode"></area-dropdown>
                     </el-form-item>
                     <el-form-item label="头像" prop="headPic">
                         <!-- shape设置形状circle/square,默认circle，size设大小number/large/medium/small-->
@@ -87,6 +87,8 @@
             return {
                 registerForm: {
                     username:'',password:'123456',checkPass:'', code:'',remember: false,codeToken:'',
+                    // addressCode:'210000,210500,210504',
+                    addressCode:'',
                     address:'',addressDetail:'',validateTime:'',age:18, sex:'男',
                     headPic:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
                 },
@@ -113,6 +115,7 @@
                 addrOptions: [
                     {value: 'bj', label:'北京', children: [{value:'sxq',label:'市辖区',children: [{value:'cyq',label:'朝阳区'},{value:'hdq',label:'海淀区'}]}]}
                 ],
+                hasAddress: 0
             }
         },
         created() {
@@ -130,6 +133,10 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if(valid) {
+                        if(this.hasAddress != 3 && this.hasAddress != 0) {
+                            alert('请正确填写省市区')
+                            return false
+                        }
                         alert('submit')
                         //提交表单
                         this.$axios.post('/login',this.registerForm).then(res => {
@@ -198,8 +205,13 @@
                 }
             },
             //获取子组件的值
-            getAreaValue(data) {
-                console.log('getAreaValue',data)
+            getAreaValue(data,params) {
+                console.log('getAreaValue',data,params)
+                this.hasAddress = params;
+                if(params == 3) {
+                    this.registerForm.addressCode = data.province.value+','+data.city.value+','+data.area.value;
+                }
+                console.log('getAreaValue',this.registerForm.addressCode)
             },
             errorAvatar() {
                 return true

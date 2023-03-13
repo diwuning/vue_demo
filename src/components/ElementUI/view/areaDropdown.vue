@@ -16,6 +16,7 @@
     const areaList = require('../../../static/area')
     export default {
         name: "areaDropdown",
+        props: ['updateArea'],
         data() {
             return {
                 province:'',
@@ -28,7 +29,16 @@
             }
         },
         created() {
+            console.log('created',this.updateArea)
             this.getAreaData('86',1)
+            if(this.updateArea) {
+                let passData = this.updateArea.split(',');
+                this.province = passData[0];
+                this.getAreaData(passData[0],2)
+                this.city = passData[1]
+                this.getAreaData(passData[1],3)
+                this.area = passData[2]
+            }
         },
         methods: {
             getAreaData(code,level) {
@@ -52,6 +62,8 @@
                 console.log('provinceChange', params,this.$refs.provinceSel.hoverIndex)
                 this.selArea.province = this.provinces[this.$refs.provinceSel.hoverIndex]
                 this.getAreaData(this.province,2)
+                //向父组件传值
+                this.$emit('getAreaValue',this.selArea,1)
                 if(this.city) {
                     this.city = ''
                 }
@@ -62,7 +74,9 @@
             cityChange(value) {
                 console.log('cityChange', value,this.$refs.citySel.hoverIndex);
                 this.selArea.city = this.cities[this.$refs.citySel.hoverIndex]
-                this.getAreaData(value, 3)
+                this.getAreaData(this.city, 3)
+                //向父组件传值
+                this.$emit('getAreaValue',this.selArea,2)
                 if(this.area) {
                     this.area = ''
                 }
@@ -71,7 +85,7 @@
                 console.log('areaChange', value,this.area)
                 this.selArea.area = this.areas[this.$refs.areaSel.hoverIndex]
                 //向父组件传值
-                this.$emit('getAreaValue',this.selArea)
+                this.$emit('getAreaValue',this.selArea,3)
             }
         }
     }
