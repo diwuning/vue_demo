@@ -34,6 +34,7 @@ import HMenuDemo from "../components/ElementUI/HMenuDemo";
 import MainLayoutE from "../components/ElementUI/MainLayoutE";
 import ElCarousel from "../components/ElementUI/ElCarousel";
 import ElForm from "../components/ElementUI/ElForm";
+import ElTabDemo from "../components/ElementUI/ElTabDemo";
 
 Vue.use(Router)
 
@@ -196,6 +197,12 @@ export default new Router({
           path: '/elForm',
           component: ElForm,
           meta: ['vue后台框架','注册表单']
+        },
+        {
+          path: '/elTabDemo',
+          name:'tab标签页',
+          component: ElTabDemo,
+          meta: ['vue后台框架','tab标签页']
         }
       ]
     },

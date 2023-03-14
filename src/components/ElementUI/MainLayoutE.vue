@@ -1,13 +1,13 @@
 <template>
     <div style="height: 100%;">
         <el-row style="height: 100%; overflow: hidden;">
-            <el-col :span="isCollapse?1:4" style="background-color: #545c64;height: 100%; overflow:auto">
+            <el-col :span="isCollapse?1:4" style="background-color: #545c64;height: 100%;" :style="isCollapse?'':'overflow:auto'">
                 <div style="margin: 20px">
                     <img src="../../assets/chongke/chk_logo.png" width="30px" height="30px">
                     <span style="color: #ffffff; margin: 12px;" :style="isCollapse?'display:none':'visibility:visible'">充客智慧门店系统</span>
                 </div>
                 <el-menu :default-active="defaultActive" style="min-height: 100%;border-color: #00000000;" background-color="#545c64"
-                         text-color="#fff" theme="dark" router :collapse="isCollapse">
+                         text-color="#fff" theme="dark" router :collapse="isCollapse" @select="menuSelect" @open="menuOpen">
                     <el-menu-item index="mainLayout" class="el_menu_item_style"><i class="el-icon-menu"></i><span slot="title">首页</span></el-menu-item>
                     <el-submenu index="2" class="el_menu_item_style">
                         <template slot="title">
@@ -24,6 +24,7 @@
                         <el-menu-item index="elAnimate">Animate.css</el-menu-item>
                         <el-menu-item index="elCarousel">走马灯</el-menu-item>
                         <el-menu-item index="elForm">注册表单</el-menu-item>
+                        <el-menu-item index="elTabDemo">tab标签页</el-menu-item>
                     </el-submenu>
                     <el-submenu index="4" class="el_menu_item_style">
                         <template slot="title"><i class="el-icon-star-on"></i><span slot="title">图表</span></template>
@@ -70,6 +71,12 @@
         methods: {
             changeMenuStatus() {
                 this.isCollapse = !this.isCollapse;
+            },
+            menuSelect(key, keyPath) {
+                console.log('menuSelect', key, keyPath,this.$route)
+            },
+            menuOpen(index) {
+                console.log('menuOpen',index)
             }
         }
     }
