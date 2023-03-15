@@ -49,6 +49,11 @@
                     <i :class="isCollapse? 'el-icon-s-unfold' : 'el-icon-s-fold'" class="icon_style" @click="changeMenuStatus()"></i>
                     <head-top style="padding-left: 40px;"></head-top>
                 </div>
+                <div style="display: flex;">
+                    <el-tag v-for="tag in $store.state.tags" :key="tag.path" style="margin-left:5px"
+                            :class="currentPath==tag.path?'sel_tag_style':''"
+                            closable @click="tagClick(tag)">{{tag.name}}</el-tag>
+                </div>
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
@@ -65,7 +70,8 @@
         data() {
             return {
                 isCollapse:false,
-                defaultActive:''
+                defaultActive:'',
+                currentPath:''
             }
         },
         methods: {
@@ -73,10 +79,33 @@
                 this.isCollapse = !this.isCollapse;
             },
             menuSelect(key, keyPath) {
-                console.log('menuSelect', key, keyPath,this.$route)
+                console.log('menuSelect', key, keyPath)
+                this.currentPath = '/'+key;
+                setTimeout(()=>{
+                    let curRoute = this.$router.currentRoute;
+                    let itemTag = {path:curRoute.path, name:curRoute.meta[1]}
+                    let tags = this.$store.state.tags;
+                    tags.push(itemTag)
+                    if(tags.length != 0) {
+                        for(var i=0;i<tags.length;i++) {
+                            for(var j=i+1; j< tags.length; j++) {
+                                if(tags[i].path == tags[j].path) {
+                                    var del = j;
+                                    tags.splice(del,1)
+                                }
+                            }
+                        }
+                    }
+                    console.log('======46666=========',tags)
+                },500)
             },
             menuOpen(index) {
                 console.log('menuOpen',index)
+            },
+            tagClick(value,event) {
+                console.log('tagClick',value,event)
+                this.currentPath = value.path
+                this.$router.push(value.path)
             }
         }
     }
@@ -92,5 +121,9 @@
         top:50%;
         transform: translate(0%,-50%);
         margin-left: 12px;
+    }
+    .sel_tag_style {
+        color: white;
+        background-color: blue;
     }
 </style>

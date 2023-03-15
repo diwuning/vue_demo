@@ -8,7 +8,8 @@ const index = new Vuex.Store({
         count:0,
         secondName:'second',
         secondCount:0,
-        otherParams:''
+        otherParams:'',
+        tags: []
     },
     getters:{
         countNum(state) {
@@ -18,7 +19,6 @@ const index = new Vuex.Store({
             return (params) => {
                 return '第二个名字是'+state.secondName+','+params
             }
-
         },
         useOtherGetter(state,getters) {
             return state.name+','+getters.countNum
@@ -42,7 +42,7 @@ const index = new Vuex.Store({
         },
         addCount(state) {
             return state.count++
-        }
+        },
     },
     actions: {
         asyncAddProperty(context, payload) {
