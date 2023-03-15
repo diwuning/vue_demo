@@ -25,6 +25,7 @@
                         <el-menu-item index="elCarousel">走马灯</el-menu-item>
                         <el-menu-item index="elForm">注册表单</el-menu-item>
                         <el-menu-item index="elTabDemo">tab标签页</el-menu-item>
+                        <el-menu-item index="elTimeLine">时间轴</el-menu-item>
                     </el-submenu>
                     <el-submenu index="4" class="el_menu_item_style">
                         <template slot="title"><i class="el-icon-star-on"></i><span slot="title">图表</span></template>
@@ -54,6 +55,7 @@
                             :class="currentPath==tag.path?'sel_tag_style':''"
                             closable @click="tagClick(tag)">{{tag.name}}</el-tag>
                 </div>
+                <el-empty description="描述文字" v-if="!currentPath"></el-empty>
                 <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
@@ -73,6 +75,10 @@
                 defaultActive:'',
                 currentPath:''
             }
+        },
+        mounted() {
+            //页面刷新时，回到el的主页面
+            this.$router.push('/mainLayout')
         },
         methods: {
             changeMenuStatus() {

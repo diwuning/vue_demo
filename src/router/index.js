@@ -35,6 +35,7 @@ import MainLayoutE from "../components/ElementUI/MainLayoutE";
 import ElCarousel from "../components/ElementUI/ElCarousel";
 import ElForm from "../components/ElementUI/ElForm";
 import ElTabDemo from "../components/ElementUI/ElTabDemo";
+import ElTimeLineDemo from "../components/ElementUI/ElTimeLineDemo";
 
 Vue.use(Router)
 
@@ -203,6 +204,12 @@ export default new Router({
           name:'tab标签页',
           component: ElTabDemo,
           meta: ['vue后台框架','tab标签页']
+        },
+        {
+          path: '/elTimeLine',
+          name:'时间轴',
+          component: ElTimeLineDemo,
+          meta: ['vue后台框架','时间轴']
         }
       ]
     },
