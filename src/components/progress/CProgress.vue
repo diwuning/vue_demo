@@ -3,7 +3,7 @@
         <div class="vue-progress-inner">
             <div class="progress-content" :style="{width: progress*100+'%'}"></div>
         </div>
-        <div style="float: right;align-self: center;font-size: 13px;margin-left: 6px; margin-right: 10px; width: 20%">福气值{{totalEnergy}}</div>
+<!--        <div style="float: right;align-self: center;font-size: 13px;margin-left: 6px; margin-right: 10px; width: 20%">福气值{{totalEnergy}}</div>-->
     </div>
 </template>
 
@@ -49,9 +49,34 @@
     }
     .progress-content {
         height: 23px;
-        align-self: center;
-        background-image: linear-gradient(0deg, #F47915 0%, #F47915 100%);
+        /*align-self: center;*/
+        /*background-image: linear-gradient(0deg, #F47915 0%, #F47915 100%);*/
         border-radius: 100px;
-        border: 1px solid #00000000;
+        /*border: 1px solid #00000000;*/
+        background-color: #d00;
+        box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.3) inset;
+        background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.35) 25%, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0.35) 75%, rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, 0));
+        background-repeat: repeat-x;
+        background-size: 20px 20px;
+        -webkit-animation: candystripe 1s linear infinite;
+        -moz-animation: candystripe 1s linear infinite;
+        animation: candystripe 1s linear infinite;
     }
+@-webkit-keyframes candystripe {
+    to {
+        background-position: 20px 0;
+    }
+}
+
+@-moz-keyframes candystripe {
+    to {
+        background-position: 20px 0;
+    }
+}
+
+@keyframes candystripe {
+    to {
+        background-position: 20px 0;
+    }
+}
 </style>

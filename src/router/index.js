@@ -36,6 +36,7 @@ import ElCarousel from "../components/ElementUI/ElCarousel";
 import ElForm from "../components/ElementUI/ElForm";
 import ElTabDemo from "../components/ElementUI/ElTabDemo";
 import ElTimeLineDemo from "../components/ElementUI/ElTimeLineDemo";
+import DragView from "../components/drag/DragView";
 
 Vue.use(Router)
 
@@ -240,5 +241,9 @@ export default new Router({
         }
       ]
     },
+    {
+      path:'/drag',
+      component:DragView
+    }
   ]
 })

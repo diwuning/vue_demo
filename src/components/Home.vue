@@ -49,7 +49,8 @@
                     {name:'js操作', path: '/jsOperate'},
                     {name:'vuex', path: '/vuexOperate'},
                     {name:'elementUi',path:'elementUi'},
-                    {name:'vue后台框架',path:'mainLayout'}
+                    {name:'vue后台框架',path:'mainLayout'},
+                    {name:'拖拽',path:'/drag'}
                 ],
                 result:''
             }
